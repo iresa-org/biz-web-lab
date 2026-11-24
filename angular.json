@@ -75,6 +75,90 @@
           "builder": "angular-cli-ghpages:deploy"
         }
       }
+    },
+    "restaurant": {
+      "projectType": "library",
+      "root": "projects/restaurant",
+      "sourceRoot": "projects/restaurant",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:library",
+          "options": {
+            "tsConfig": "projects/restaurant/tsconfig.lib.json"
+          },
+          "configurations": {
+            "production": {},
+            "development": {
+              "compilationMode": "full",
+              "declarationMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/restaurant/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "dog-shop": {
+      "projectType": "library",
+      "root": "projects/dog-shop",
+      "sourceRoot": "projects/dog-shop",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:library",
+          "options": {
+            "tsConfig": "projects/dog-shop/tsconfig.lib.json"
+          },
+          "configurations": {
+            "production": {},
+            "development": {
+              "compilationMode": "full",
+              "declarationMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/dog-shop/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "dealership": {
+      "projectType": "library",
+      "root": "projects/dealership",
+      "sourceRoot": "projects/dealership",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:library",
+          "options": {
+            "tsConfig": "projects/dealership/tsconfig.lib.json"
+          },
+          "configurations": {
+            "production": {},
+            "development": {
+              "compilationMode": "full",
+              "declarationMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/dealership/tsconfig.spec.json"
+          }
+        }
+      }
     }
   }
 }

@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>WebShowcase</title>
+    <title>Biz Web Lab | Small business. Big possibilities.</title>
+    <meta
+      name="description"
+      content="Explore thoughtful web design for small businesses. Discover restaurant, pet retail, and dealership concepts from Biz Web Lab."
+    />
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
@@ -20,6 +24,18 @@
             null,
             location.pathname.slice(0, -1) + decoded + location.hash,
           );
+        }
+
+        if (
+          location.pathname.replace(/\/$/, '') === new URL('restaurant', document.baseURI).pathname
+        ) {
+          const hero = document.createElement('link');
+          hero.rel = 'preload';
+          hero.as = 'image';
+          hero.href = 'images/restaurant-room.avif';
+          hero.type = 'image/avif';
+          hero.fetchPriority = 'high';
+          document.head.appendChild(hero);
         }
       })(window.location);
     </script>

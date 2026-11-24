@@ -11,6 +11,11 @@
     "isolatedModules": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "paths": {
+      "dealership": ["./projects/dealership/src/public-api.ts"],
+      "dog-shop": ["./projects/dog-shop/src/public-api.ts"],
+      "restaurant": ["./projects/restaurant/src/public-api.ts"]
+    },
     "target": "ES2022",
     "module": "preserve"
   },
@@ -26,6 +31,24 @@
     },
     {
       "path": "./projects/web-showcase/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/restaurant/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/restaurant/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/dog-shop/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/dog-shop/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/dealership/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/dealership/tsconfig.spec.json"
     }
   ]
 }

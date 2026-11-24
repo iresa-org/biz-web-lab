@@ -1,1 +1,93 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'business-pages';
+
+:root {
+  --ink: #1e3028;
+  --muted: #647068;
+  --line: #dce1d9;
+  --mint: #dce9d8;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: var(--ink);
+  background: #f8f9f5;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+a {
+  color: inherit;
+}
+button {
+  font: inherit;
+  color: inherit;
+}
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #386b54;
+  outline-offset: 5px;
+}
+main:focus {
+  outline: none;
+}
+::selection {
+  background: #c1dbc4;
+}
+.page-width {
+  width: min(1180px, calc(100% - 96px));
+  margin-inline: auto;
+}
+.status-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #387563;
+}
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  border-radius: 6px;
+  padding: 15px 20px;
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: none;
+}
+.button-dark {
+  background: var(--ink);
+  color: white;
+}
+.button-dark:hover {
+  background: #365343;
+}
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 20px;
+  padding: 15px;
+  background: white;
+  z-index: 10;
+}
+.skip-link:focus {
+  top: 10px;
+}
+@media (max-width: 700px) {
+  .page-width {
+    width: calc(100% - 40px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}

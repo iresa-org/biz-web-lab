@@ -1,0 +1,174 @@
+:host {
+  display: block;
+  --biz-bg: #f5f7f8;
+  --biz-ink: #182d3d;
+  --biz-muted: #5d6e7c;
+  --biz-accent: #234f67;
+  --biz-accent-ink: #fff;
+  --biz-soft: #e7eef1;
+  --biz-border: #d7e0e5;
+}
+.business-logo {
+  font-weight: 750;
+}
+.business-logo span {
+  color: #477a94;
+}
+.business-logo small {
+  display: block;
+  font-size: 8px;
+  letter-spacing: 3px;
+  margin-top: 3px;
+}
+.biz-hero {
+  position: relative;
+  min-height: 580px;
+  color: #fff;
+  background: #102331;
+}
+.hero-picture {
+  position: absolute;
+  inset: 0 0 0 25%;
+}
+.hero-picture img {
+  object-position: center 60%;
+}
+.hero-picture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #102331, #10233190 40%, #10233120);
+}
+.hero-copy {
+  position: relative;
+  padding-block: 85px;
+}
+.hero-copy > p:not(.kicker) {
+  color: #dae3ea;
+  max-width: 390px;
+}
+.hero-copy h1 {
+  font-weight: 550;
+  letter-spacing: -4px;
+}
+.hero-copy h1 span {
+  color: #b6d2e0;
+}
+.hero-copy .biz-button {
+  background: #d4e5ee;
+  color: #182d3d;
+}
+.hero-footnote {
+  color: #d4e5ee;
+}
+.inventory-filters {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.budget-filter {
+  background: transparent;
+  border: 1px solid var(--biz-border);
+  border-radius: 30px;
+  padding: 11px 17px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.budget-filter.active {
+  color: #fff;
+  background: var(--biz-accent);
+}
+.budget-filter span {
+  margin-left: 12px;
+}
+.card-photo {
+  aspect-ratio: 1.6;
+}
+.vehicle-year {
+  font-size: 9px;
+  letter-spacing: 1.2px;
+  margin-top: 0;
+  color: var(--biz-muted);
+}
+.vehicle-specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 15px;
+  color: var(--biz-muted);
+  font-size: 11px;
+  margin: 17px 0;
+}
+.vehicle-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid var(--biz-border);
+}
+.vehicle-bottom > strong {
+  font-size: 24px;
+  letter-spacing: -1px;
+}
+.vehicle-bottom .biz-button {
+  padding: 11px 13px;
+  font-size: 10px;
+  gap: 10px;
+}
+.biz-story {
+  background: #182d3d;
+  color: #fff;
+}
+.biz-story p {
+  color: #d1dce3;
+}
+.dealer-promises {
+  display: grid;
+  gap: 15px;
+  padding-top: 15px;
+}
+.dealer-promises > div {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 13px;
+}
+.dealer-promises strong {
+  color: #a9c5d5;
+  font-size: 11px;
+}
+.detail-photo {
+  aspect-ratio: 1.8;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-top: 22px;
+}
+.detail-price {
+  font-size: 30px;
+  font-weight: 650;
+}
+.detail-price small {
+  font-size: 9px;
+  color: var(--biz-muted);
+  font-weight: 400;
+}
+@media (max-width: 700px) {
+  .hero-picture {
+    inset: 0;
+  }
+  .hero-picture::after {
+    background: #102331b5;
+  }
+  .hero-copy {
+    padding-block: 65px;
+  }
+  .hero-copy h1 {
+    letter-spacing: -2px;
+  }
+  .biz-hero {
+    min-height: 530px;
+  }
+}

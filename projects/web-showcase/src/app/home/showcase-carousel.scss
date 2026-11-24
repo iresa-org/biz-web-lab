@@ -1,0 +1,235 @@
+:host {
+  display: block;
+}
+section {
+  scroll-margin-top: 25px;
+}
+.section-heading,
+.section-label,
+.carousel-controls {
+  display: flex;
+  align-items: center;
+}
+.section-heading {
+  justify-content: space-between;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+  gap: 15px;
+}
+.section-label {
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.tiny-square {
+  width: 7px;
+  height: 7px;
+  background: #387563;
+}
+.section-label h2 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+.count {
+  font-size: 9px;
+  color: var(--muted);
+  letter-spacing: 1px;
+  margin-left: 16px;
+}
+.carousel-controls {
+  gap: 9px;
+}
+.position {
+  font-size: 12px;
+  margin-right: 16px;
+  white-space: nowrap;
+}
+.position span {
+  color: var(--muted);
+  margin-left: 7px;
+}
+.arrow {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  background: transparent;
+  border-radius: 50%;
+  font-size: 19px;
+  cursor: pointer;
+}
+.arrow:hover {
+  background: var(--mint);
+  border-color: var(--ink);
+}
+.project-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 0;
+}
+.project-tabs button {
+  border: 1px solid var(--line);
+  padding: 9px 16px;
+  background: transparent;
+  border-radius: 30px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.project-tabs button span {
+  margin-left: 20px;
+}
+.project-tabs button.selected {
+  background: var(--ink);
+  color: white;
+  border-color: var(--ink);
+}
+.demo-note {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 11px;
+}
+.project-card {
+  display: grid;
+  grid-template-columns: 55% 45%;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+}
+.project-info {
+  padding: 37px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+.project-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+  font-size: 8px;
+  letter-spacing: 1.1px;
+  color: #54645b;
+}
+.concept-badge {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 6px;
+  font-size: 7px;
+  white-space: nowrap;
+}
+.project-info h3 {
+  font-size: clamp(28px, 3vw, 41px);
+  line-height: 1.12;
+  letter-spacing: -1.7px;
+  font-weight: 500;
+  max-width: 300px;
+  margin: 25px 0 15px;
+}
+.project-info > p {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+  margin: 0;
+  max-width: 330px;
+}
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 22px 0 27px;
+}
+.tags span {
+  font-size: 9px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 6px 8px;
+}
+.placeholder-note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 16px;
+}
+.placeholder-note .status-dot {
+  width: 5px;
+  height: 5px;
+}
+.carousel-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 16px 0;
+  gap: 18px;
+}
+.carousel-bottom p,
+.carousel-bottom > span {
+  font-size: 10px;
+  color: var(--muted);
+}
+.dots {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.dots button {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.dots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 9px;
+  background: #bac5be;
+}
+.dots .active span {
+  width: 22px;
+  background: var(--ink);
+}
+@media (max-width: 1000px) {
+  .project-info {
+    padding: 26px;
+  }
+  .count {
+    display: none;
+  }
+}
+@media (max-width: 700px) {
+  .demo-note {
+    display: none;
+  }
+  .project-card {
+    grid-template-columns: 1fr;
+  }
+  .project-info {
+    padding: 28px;
+  }
+  .project-info h3 {
+    max-width: none;
+    font-size: 35px;
+  }
+  .project-info > p {
+    max-width: none;
+  }
+  .carousel-bottom > span {
+    display: none;
+  }
+  .dots {
+    position: static;
+    transform: none;
+  }
+}

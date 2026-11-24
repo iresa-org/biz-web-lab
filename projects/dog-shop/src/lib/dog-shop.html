@@ -1,0 +1,199 @@
+<div class="business dog-shop">
+  <div class="demo-ribbon inner">
+    <span>DOG SHOP DEMO &middot; FICTIONAL PRODUCTS</span>
+  </div>
+  <header class="business-nav inner">
+    <a class="business-logo" [routerLink]="[]" fragment="dog-top" aria-label="Good dog home"
+      >good dog<span>.</span></a
+    >
+    <nav aria-label="Dog shop navigation">
+      <a [routerLink]="[]" fragment="dog-products">The good stuff</a
+      ><a [routerLink]="[]" fragment="dog-story">Our pack</a
+      ><button class="biz-button" type="button" (click)="bagDialog.showModal()">
+        Bag ({{ bagCount() }}) <span aria-hidden="true">&#8599;</span>
+      </button>
+    </nav>
+  </header>
+  <section id="dog-top" class="biz-hero inner" aria-labelledby="dog-shop-title">
+    <div class="hero-copy">
+      <p class="kicker">FOR YOUR VERY BEST FRIEND.</p>
+      <h1 id="dog-shop-title">Good things.<br /><span>Great dogs.</span></h1>
+      <p>
+        For muddy paws, very good sits, and the everyday adventures you share. A little more joy for
+        your favorite companion.
+      </p>
+      <a class="biz-button" [routerLink]="[]" fragment="dog-products"
+        >Find their new favorite <span aria-hidden="true">&#8599;</span></a
+      ><span class="hero-footnote">THOUGHTFULLY CHOSEN. ENTHUSIASTICALLY SNIFFED.</span>
+    </div>
+    <div class="hero-picture">
+      <picture>
+        <source
+          media="(max-width: 700px)"
+          srcset="images/golden-dog-480.webp 480w, images/golden-dog-768.webp 768w"
+          sizes="90vw"
+          type="image/webp"
+        />
+        <img
+          ngSrc="images/golden-dog.webp"
+          fill
+          priority
+          sizes="(max-width: 700px) 90vw, 45vw"
+          alt="A happy golden retriever enjoying a sunny day outdoors"
+        />
+      </picture>
+      <span class="dog-sticker" aria-hidden="true">100%<br /><strong>good dog.</strong></span>
+    </div>
+  </section>
+  <div class="biz-values">
+    <span>Small shop. Big heart.</span><span>Everyday adventures, upgraded</span
+    ><span>For the love of dogs</span>
+  </div>
+  <section id="dog-products" class="biz-section inner" aria-labelledby="products-title">
+    <div class="section-top">
+      <div>
+        <p class="kicker">THEIR NEW FAVORITES LIVE HERE</p>
+        <h2 id="products-title">Good stuff for good dogs.</h2>
+      </div>
+      <p>For walk time, dinner time,<br />and the best time: together time.</p>
+    </div>
+    <div class="biz-filters" aria-label="Product categories">
+      @for (item of categories; track item) {
+        <button
+          type="button"
+          [class.active]="category() === item"
+          [attr.aria-pressed]="category() === item"
+          (click)="category.set(item)"
+        >
+          {{ item }}
+        </button>
+      }
+    </div>
+    <p class="result-count" aria-live="polite">
+      Favorites to discover: {{ visibleProducts().length }}
+    </p>
+    <div class="business-cards">
+      @for (product of visibleProducts(); track product.id) {
+        <article class="business-card">
+          <div class="card-photo">
+            <picture>
+              <source
+                media="(max-width: 700px)"
+                [srcset]="
+                  'images/' +
+                  product.image +
+                  '-480.webp 480w, images/' +
+                  product.image +
+                  '-768.webp 768w'
+                "
+                sizes="90vw"
+                type="image/webp"
+              />
+              <img
+                [ngSrc]="'images/' + product.image + '.webp'"
+                fill
+                sizes="(max-width: 700px) 90vw, 30vw"
+                [alt]="product.category + ' time inspiration - illustrative dog lifestyle photo'"
+              />
+            </picture>
+            <span class="photo-badge">{{ product.category }} TIME</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">
+              <h3>{{ product.name }}</h3>
+              <span>{{ product.price | currency: 'USD' : 'symbol' : '1.0-0' }}</span>
+            </div>
+            <p>{{ product.description }}</p>
+            <button
+              class="biz-button full-width"
+              type="button"
+              [attr.aria-label]="'Add to bag: ' + product.name"
+              (click)="add(product)"
+            >
+              Add to bag <span aria-hidden="true">+</span>
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+    <p class="demo-status" role="status">{{ bagNotice() }}</p>
+    <p class="small-print">
+      Fictional products and USD prices. Stock lifestyle photos are illustrative, not product
+      photos. No checkout or payment collection.
+    </p>
+  </section>
+  <section id="dog-story" class="biz-story inner" aria-labelledby="dog-story-title">
+    <div>
+      <p class="kicker">WELCOME TO THE PACK</p>
+      <h2 id="dog-story-title">Life's better<br />with a little dog hair.</h2>
+    </div>
+    <div>
+      <p>
+        We're a fictional little shop with a very real soft spot for dogs. Our idea is simple:
+        fewer, better things that make every day with your best friend a good one.
+      </p>
+      <p>
+        From the first walk of the morning to the last treat before bed, we're here for the moments
+        that matter.
+      </p>
+      <a class="biz-button" [routerLink]="[]" fragment="dog-products"
+        >Meet the collection <span aria-hidden="true">&#8599;</span></a
+      >
+    </div>
+  </section>
+  <footer class="business-footer inner">
+    <strong>good dog. &mdash; Come as you are. Bring your dog.</strong
+    ><span>A little shop with a lot of heart.</span
+    ><span>Demo only. Your bag resets when you reload.</span>
+  </footer>
+  <dialog
+    #bagDialog
+    class="biz-dialog"
+    aria-labelledby="bag-title"
+    (keydown.escape)="bagDialog.close(); $event.preventDefault()"
+  >
+    <div class="dialog-top">
+      <span class="kicker">A LITTLE JOY, BAGGED UP</span
+      ><button class="icon-button" type="button" aria-label="Close bag" (click)="bagDialog.close()">
+        &times;
+      </button>
+    </div>
+    <h2 id="bag-title">Your good dog bag.</h2>
+    <p>This is a demo bag. No orders can be placed and no payments are collected.</p>
+    @for (item of bag(); track item.product.id) {
+      <div class="bag-row">
+        <div>
+          <h3>{{ item.product.name }}</h3>
+          <span
+            >Quantity: {{ item.quantity }} &middot; {{ item.product.price | currency }} each</span
+          >
+        </div>
+        <div>
+          <strong>{{ item.product.price * item.quantity | currency }}</strong><button
+            class="quiet-button"
+            type="button"
+            [attr.aria-label]="'Remove ' + item.product.name"
+            (click)="remove(item.product); continueShopping.focus()"
+          >
+            Remove
+          </button>
+        </div>
+      </div>
+    } @empty {
+      <p class="empty-state">
+        Your bag is waiting for a little happiness. Add something from the collection.
+      </p>
+    }
+    <div class="bag-total" aria-live="polite">
+      <span>Demo subtotal (USD)</span><strong>{{ subtotal() | currency }}</strong>
+    </div>
+    @if (bagCount() > 0) {
+      <button class="biz-button" type="button" (click)="clearBag(); continueShopping.focus()">
+        Clear demo bag
+      </button>
+    }
+    <button #continueShopping class="quiet-button" type="button" (click)="bagDialog.close()">
+      Keep exploring
+    </button>
+  </dialog>
+</div>

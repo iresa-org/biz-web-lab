@@ -1,0 +1,80 @@
+:host {
+  display: block;
+  --biz-bg: #faf6ed;
+  --biz-ink: #30432f;
+  --biz-muted: #58664f;
+  --biz-accent: #344d31;
+  --biz-accent-ink: #fff;
+  --biz-soft: #eae8da;
+  --biz-border: #dedfd1;
+}
+.business-logo,
+h1,
+h2,
+.card-title h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+}
+.business-logo {
+  font-size: 40px;
+}
+.biz-hero {
+  position: relative;
+  color: #fffaf0;
+  min-height: 570px;
+}
+.hero-picture {
+  position: absolute;
+  inset: 0;
+}
+.hero-picture::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #162417ed, #16241770 65%, #16241710);
+}
+.hero-copy {
+  position: relative;
+  padding-block: 80px;
+}
+.hero-copy > p:not(.kicker) {
+  max-width: 400px;
+  color: #f3eddf;
+}
+.hero-copy .biz-button {
+  background: #e4d1a6;
+  color: #263d27;
+}
+.hero-copy .quiet-link {
+  color: #fffaf0;
+}
+.hero-footnote {
+  color: #e2ddce;
+}
+.biz-hero h1 {
+  font-size: clamp(58px, 7vw, 98px);
+}
+.biz-story {
+  background: #eae8da;
+}
+.card-photo img {
+  transition: transform 0.3s;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .business-card:hover img {
+    transform: scale(1.035);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-photo img {
+    transition: none;
+  }
+}
+@media (max-width: 700px) {
+  .biz-hero {
+    min-height: 530px;
+  }
+  .hero-copy {
+    padding-block: 60px;
+  }
+}

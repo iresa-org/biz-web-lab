@@ -1,0 +1,89 @@
+<section
+  id="showcase"
+  aria-labelledby="showcase-title"
+  aria-roledescription="carousel"
+  (keydown)="onCarouselKeydown($event)"
+>
+  <div class="section-heading">
+    <div class="section-label">
+      <span class="tiny-square"></span>
+      <h2 id="showcase-title">The showcase</h2>
+      <span class="count">{{ projects.length }} CONCEPTS. ENDLESS POTENTIAL.</span>
+    </div>
+    <div class="carousel-controls">
+      <span class="position" aria-hidden="true"
+        >0{{ activeIndex() + 1 }} <span>/ 0{{ projects.length }}</span></span
+      >
+      <button type="button" class="arrow" aria-label="Previous project" (click)="move(-1)">
+        &#8592;
+      </button>
+      <button type="button" class="arrow" aria-label="Next project" (click)="move(1)">
+        &#8594;
+      </button>
+    </div>
+  </div>
+  <div class="project-tabs" aria-label="Choose a project">
+    @for (project of projects; track project.route; let index = $index) {
+      <button
+        type="button"
+        [class.selected]="activeIndex() === index"
+        [attr.aria-pressed]="activeIndex() === index"
+        (click)="activeIndex.set(index)"
+      >
+        {{ project.type }} <span aria-hidden="true">&#8599;</span>
+      </button>
+    }
+    <span class="demo-note">A glimpse of what's possible. Built to inspire.</span>
+  </div>
+  <article
+    class="project-card"
+    aria-roledescription="slide"
+    [attr.aria-label]="activeIndex() + 1 + ' of ' + projects.length + ': ' + activeProject().type"
+  >
+    <app-concept-preview [concept]="activeProject().preview" />
+    <div class="project-info">
+      <div class="project-meta">
+        <span>{{ activeProject().category }}</span><span class="concept-badge"
+          >CONCEPT 0{{ activeIndex() + 1 }}</span
+        >
+      </div>
+      <h3>{{ activeProject().name }}</h3>
+      <p>{{ activeProject().description }}</p>
+      <div class="tags">
+        @for (tag of activeProject().tags; track tag) {
+          <span>{{ tag }}</span>
+        }
+      </div>
+      <a
+        class="button button-dark"
+        [routerLink]="activeProject().route"
+        target="_blank"
+        rel="noopener noreferrer"
+        [attr.aria-label]="'Explore the concept: ' + activeProject().type + ' (opens in a new tab)'"
+        >Explore the concept <span aria-hidden="true">&#8599;</span></a
+      >
+      <span class="placeholder-note"
+        ><span class="status-dot"></span> Interactive demo. Mock data, real possibilities.</span
+      >
+    </div>
+  </article>
+  <div class="carousel-bottom">
+    <p aria-live="polite" aria-atomic="true">
+      0{{ activeIndex() + 1 }} &mdash; {{ activeProject().type }} concept
+    </p>
+    <div class="dots">
+      @for (project of projects; track project.route; let index = $index) {
+        <button
+          type="button"
+          [class.active]="activeIndex() === index"
+          [attr.aria-label]="'Show ' + project.type + ' concept'"
+          [attr.aria-pressed]="activeIndex() === index"
+          (click)="activeIndex.set(index)"
+        >
+          <span></span>
+        </button>
+      }
+    </div>
+    <span>Different industries. The same attention to detail.</span>
+  </div>
+</section>

@@ -1,0 +1,231 @@
+<div class="business dealership">
+  <div class="demo-ribbon inner">
+    <span>DEALERSHIP DEMO &middot; FICTIONAL INVENTORY</span>
+  </div>
+  <header class="business-nav inner">
+    <a
+      class="business-logo"
+      [routerLink]="[]"
+      fragment="dealership-top"
+      aria-label="Forward Motor Co home"
+      >forward<span>.</span><small>MOTOR CO.</small></a
+    >
+    <nav aria-label="Dealership navigation">
+      <a [routerLink]="[]" fragment="inventory">Our vehicles</a
+      ><a [routerLink]="[]" fragment="dealership-story">The forward way</a
+      ><a class="biz-button" [routerLink]="[]" fragment="inventory"
+        >Find your next drive <span aria-hidden="true">&#8599;</span></a
+      >
+    </nav>
+  </header>
+  <section id="dealership-top" class="biz-hero" aria-labelledby="dealership-title">
+    <div class="hero-picture">
+      <img
+        ngSrc="images/car-road.webp"
+        fill
+        priority
+        sizes="100vw"
+        alt="A silver sports car in front of a collection of vehicles"
+      />
+    </div>
+    <div class="hero-copy inner">
+      <p class="kicker">GOOD PEOPLE. OPEN ROADS.</p>
+      <h1 id="dealership-title">Your next<br /><span>great drive.</span></h1>
+      <p>
+        A better car-buying experience starts with you. Discover a thoughtfully selected collection,
+        without the pressure.
+      </p>
+      <a class="biz-button" [routerLink]="[]" fragment="inventory"
+        >Explore the collection <span aria-hidden="true">&#8599;</span></a
+      ><span class="hero-footnote">A FRESH PERSPECTIVE ON THE ROAD AHEAD</span>
+    </div>
+  </section>
+  <div class="biz-values">
+    <span>A carefully chosen collection</span><span>Clear pricing. No guesswork.</span
+    ><span>Your journey, your pace</span>
+  </div>
+  <section id="inventory" class="biz-section inner" aria-labelledby="inventory-title">
+    <div class="section-top">
+      <div>
+        <p class="kicker">THE NEXT CHAPTER LOOKS GOOD ON YOU</p>
+        <h2 id="inventory-title">Find your kind of forward.</h2>
+      </div>
+      <p>From the everyday commute<br />to the once-in-a-lifetime road trip.</p>
+    </div>
+    <div class="inventory-filters">
+      <div class="biz-filters" aria-label="Vehicle body styles">
+        @for (item of types; track item) {
+          <button
+            type="button"
+            [class.active]="type() === item"
+            [attr.aria-pressed]="type() === item"
+            (click)="type.set(item)"
+          >
+            {{ item }}
+          </button>
+        }
+      </div>
+      <button
+        class="budget-filter"
+        type="button"
+        [attr.aria-pressed]="affordableOnly()"
+        [class.active]="affordableOnly()"
+        (click)="toggleBudget()"
+      >
+        Under $40,000 <span aria-hidden="true">{{ affordableOnly() ? '&#10003;' : '+' }}</span>
+      </button>
+    </div>
+    <p class="result-count" aria-live="polite">
+      Vehicles in your selection: {{ visibleVehicles().length }}
+    </p>
+    <div class="business-cards">
+      @for (vehicle of visibleVehicles(); track vehicle.id) {
+        <article class="business-card">
+          <div class="card-photo">
+            <picture>
+              <source
+                media="(max-width: 700px)"
+                [srcset]="
+                  'images/' +
+                  vehicle.image +
+                  '-480.webp 480w, images/' +
+                  vehicle.image +
+                  '-768.webp 768w'
+                "
+                sizes="90vw"
+                type="image/webp"
+              />
+              <img
+                [ngSrc]="'images/' + vehicle.image + '.webp'"
+                fill
+                sizes="(max-width: 700px) 90vw, 30vw"
+                [alt]="vehicle.type + ' stock photography, illustrative of this fictional vehicle'"
+              />
+            </picture>
+            <span class="photo-badge">{{ vehicle.type }}</span>
+          </div>
+          <div class="card-body">
+            <p class="vehicle-year">{{ vehicle.year }} &middot; DEMO COLLECTION</p>
+            <div class="card-title">
+              <h3>{{ vehicle.name }}</h3>
+            </div>
+            <div class="vehicle-specs">
+              <span>{{ vehicle.miles | number }} mi</span><span>{{ vehicle.fuel }}</span
+              ><span>Automatic</span>
+            </div>
+            <div class="vehicle-bottom">
+              <strong>{{ vehicle.price | currency: 'USD' : 'symbol' : '1.0-0' }}</strong><button
+                class="biz-button"
+                type="button"
+                [attr.aria-label]="'View vehicle: ' + vehicle.name"
+                (click)="openVehicle(vehicle, details)"
+              >
+                View vehicle <span aria-hidden="true">&#8599;</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+    @if (visibleVehicles().length === 0) {
+      <div class="empty-state">
+        <h3>A different road might be the one.</h3>
+        <p>No demo vehicles match these filters. Try another body style or price range.</p>
+        <button class="biz-button" type="button" (click)="resetFilters()">Reset filters</button>
+      </div>
+    }
+    <p class="small-print">
+      All vehicle names, specifications, mileage, and USD prices are fictional. Stock photos are
+      illustrative. No vehicles are actually offered for sale.
+    </p>
+  </section>
+  <section id="dealership-story" class="biz-story inner" aria-labelledby="dealership-story-title">
+    <div>
+      <p class="kicker">THE FORWARD WAY</p>
+      <h2 id="dealership-story-title">Less pressure.<br />More possibility.</h2>
+    </div>
+    <div>
+      <p>
+        Finding your next car should feel like the start of something good. Our fictional dealership
+        puts thoughtful guidance and a carefully selected collection at the heart of the experience.
+      </p>
+      <div class="dealer-promises">
+        <div><strong>01</strong><span>Discover at your pace</span></div>
+        <div><strong>02</strong><span>Get to know the details</span></div>
+        <div><strong>03</strong><span>Picture the road ahead</span></div>
+      </div>
+    </div>
+  </section>
+  <footer class="business-footer inner">
+    <strong>forward. &mdash; A new way forward.</strong><span>People first. The road second.</span
+    ><span>Demo only. No real sales or test-drive bookings.</span>
+  </footer>
+  <dialog
+    #details
+    class="biz-dialog"
+    aria-labelledby="vehicle-title"
+    (keydown.escape)="details.close(); $event.preventDefault()"
+  >
+    <div class="dialog-top">
+      <span class="kicker">PICTURE YOUR NEXT CHAPTER</span
+      ><button
+        class="icon-button"
+        type="button"
+        #closeDetails
+        aria-label="Close vehicle details"
+        (click)="details.close()"
+      >
+        &times;
+      </button>
+    </div>
+    @if (selectedVehicle(); as vehicle) {
+      <div class="detail-photo">
+        <picture>
+          <source
+            media="(max-width: 700px)"
+            [srcset]="
+              'images/' +
+              vehicle.image +
+              '-480.webp 480w, images/' +
+              vehicle.image +
+              '-768.webp 768w'
+            "
+            sizes="85vw"
+            type="image/webp"
+          />
+          <img
+            [ngSrc]="'images/' + vehicle.image + '.webp'"
+            fill
+            sizes="(max-width: 700px) 85vw, 40vw"
+            alt="Illustrative stock photo for the selected demo vehicle"
+          />
+        </picture>
+      </div>
+      <p class="kicker">{{ vehicle.year }} &middot; {{ vehicle.type }}</p>
+      <h2 id="vehicle-title">{{ vehicle.name }}</h2>
+      <p>{{ vehicle.description }}</p>
+      <div class="vehicle-specs">
+        <span>{{ vehicle.miles | number }} mi</span><span>{{ vehicle.fuel }}</span
+        ><span>Automatic</span>
+      </div>
+      <p class="detail-price">
+        {{ vehicle.price | currency: 'USD' : 'symbol' : '1.0-0' }} <small>FICTIONAL PRICE</small>
+      </p>
+      <button
+        class="biz-button"
+        type="button"
+        [disabled]="testDriveRequested()"
+        (click)="testDriveRequested.set(true); closeDetails.focus()"
+      >
+        Try a test-drive request <span aria-hidden="true">&#8599;</span>
+      </button>
+      <p class="demo-status" role="status">
+        @if (testDriveRequested()) {
+          Demo test-drive request noted for the {{ vehicle.name }}. Nothing has been sent and no
+          appointment has been made.
+        }
+      </p>
+      <p class="small-print">This is a fictional vehicle listing. No personal data is collected.</p>
+    }
+  </dialog>
+</div>

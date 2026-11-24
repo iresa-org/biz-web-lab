@@ -1,0 +1,81 @@
+<div
+  class="project-visual"
+  [class.pet-visual]="concept() === 'dog-shop'"
+  [class.auto-visual]="concept() === 'dealership'"
+>
+  <span class="visual-label">A LITTLE PREVIEW</span>
+  <div class="browser-preview" aria-hidden="true">
+    <div class="browser-bar">
+      <div><i></i><i></i><i></i></div>
+      <span>{{ preview().site }}</span><span>&#8599;</span>
+    </div>
+    <div class="mini-nav">
+      <strong>{{ preview().brand }}</strong><span
+        >Our story &nbsp; {{ preview().collection }} &nbsp; Visit us</span
+      >
+    </div>
+    <div class="mini-content">
+      <p>{{ preview().eyebrow }}</p>
+      <h3>
+        {{ preview().heading }}<br /><em>{{ preview().emphasis }}</em>
+      </h3>
+      <span class="mini-button">{{ preview().button }} &#8599;</span>
+    </div>
+    @if (concept() === 'dealership') {
+      <svg class="car-art" viewBox="0 0 320 140">
+        <ellipse cx="166" cy="120" rx="139" ry="11" fill="#243f4b" opacity=".12" />
+        <path d="M25 92 43 66 90 55 126 23h89l43 35 33 12q14 4 14 20v20H20z" fill="#446c7b" />
+        <path d="m105 55 29-25h72l33 27z" fill="#c6dce0" />
+        <path d="m174 30 3 26" stroke="#446c7b" stroke-width="6" />
+        <path
+          d="M28 87h30m209-8 26 6M94 72h17m76 0h17"
+          stroke="#eff4e8"
+          stroke-width="5"
+          stroke-linecap="round"
+        />
+        <path d="M88 98h145" stroke="#315361" stroke-width="3" />
+        <circle cx="79" cy="108" r="23" fill="#24343c" />
+        <circle cx="79" cy="108" r="12" fill="#c8d3d4" />
+        <circle cx="252" cy="108" r="23" fill="#24343c" />
+        <circle cx="252" cy="108" r="12" fill="#c8d3d4" />
+      </svg>
+    } @else if (concept() === 'dog-shop') {
+      <svg class="dog-art" viewBox="0 0 260 290">
+        <path
+          fill="#ad613d"
+          d="M55 132C14 126 7 49 37 34c27-14 54 38 60 59h64c6-21 33-73 60-59 30 15 23 92-18 98l4 79c0 81-154 81-154 0z"
+        />
+        <path fill="#edbe83" d="M77 98c16-34 90-34 106 0l11 109c0 68-130 68-130 0z" />
+        <path
+          fill="#fff3db"
+          d="M130 112c-27 30-7 58-29 75-42 33-5 72 29 72s71-39 29-72c-22-17-2-45-29-75"
+        />
+        <ellipse cx="93" cy="151" rx="8" ry="11" fill="#263e32" />
+        <ellipse cx="167" cy="151" rx="8" ry="11" fill="#263e32" />
+        <path fill="#263e32" d="M113 194q17-13 34 0c0 22-34 22-34 0" />
+        <path
+          d="M130 211v13m-16-2q16 18 32 0"
+          fill="none"
+          stroke="#263e32"
+          stroke-width="4"
+          stroke-linecap="round"
+        />
+        <path d="M77 257q53 25 106 0l-2 17q-51 26-102 0" fill="#42765b" />
+        <circle cx="130" cy="278" r="10" fill="#e9b957" />
+      </svg>
+      <div class="preview-sticker">100%<br /><strong>good dog.</strong></div>
+    } @else {
+      <div class="plate">
+        <div class="food">
+          <span></span><span></span><span></span><span></span><span></span><span></span><b></b
+          ><b></b><b></b>
+        </div>
+      </div>
+      <div class="preview-sticker">made with<br /><strong>love.</strong></div>
+    }
+    <div class="mini-footer">
+      <span>{{ preview().footer }}</span><span>SCROLL TO EXPLORE &#8595;</span>
+    </div>
+  </div>
+  <span class="concept-caption">DESIGN DIRECTION / {{ preview().caption }}</span>
+</div>

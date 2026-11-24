@@ -1,0 +1,130 @@
+:host {
+  display: block;
+  --biz-bg: #fffaf1;
+  --biz-ink: #382944;
+  --biz-muted: #65556d;
+  --biz-accent: #5b3e73;
+  --biz-accent-ink: #fff;
+  --biz-soft: #eee4f1;
+  --biz-border: #e5dce7;
+}
+.business-logo {
+  font-weight: 850;
+  letter-spacing: -2px;
+}
+.business-logo span,
+.hero-copy h1 > span {
+  color: #715184;
+}
+.biz-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 65px;
+  align-items: center;
+  padding-block: 35px 65px;
+}
+.hero-copy h1 {
+  font-weight: 750;
+  letter-spacing: -4px;
+}
+.hero-copy > p:not(.kicker) {
+  max-width: 400px;
+}
+.hero-picture {
+  min-height: 510px;
+  border-radius: 45% 45% 12px 12px;
+}
+.hero-picture img {
+  border-radius: inherit;
+  object-position: center 35%;
+}
+.dog-sticker {
+  position: absolute;
+  bottom: 20px;
+  left: -22px;
+  background: #f4bf6c;
+  border-radius: 50%;
+  width: 118px;
+  height: 118px;
+  display: grid;
+  align-content: center;
+  text-align: center;
+  transform: rotate(-12deg);
+  font-size: 17px;
+}
+.dog-sticker strong {
+  font-family: Georgia, serif;
+  font-size: 23px;
+}
+.business-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+}
+.card-photo {
+  aspect-ratio: 1.15;
+  flex-shrink: 0;
+}
+.card-body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+.card-body > .biz-button {
+  margin-top: auto;
+}
+.biz-story {
+  background: #f0e2d2;
+}
+.bag-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--biz-border);
+}
+.bag-row h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+.bag-row span {
+  font-size: 12px;
+  color: var(--biz-muted);
+}
+.bag-row > div:last-child {
+  text-align: right;
+}
+.bag-row .quiet-button {
+  display: block;
+  margin: 8px 0 0 auto;
+}
+.bag-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 0;
+}
+@media (max-width: 900px) {
+  .biz-hero {
+    gap: 30px;
+  }
+  .hero-picture {
+    min-height: 430px;
+  }
+}
+@media (max-width: 700px) {
+  .biz-hero {
+    grid-template-columns: 1fr;
+  }
+  .hero-copy h1 {
+    letter-spacing: -2px;
+  }
+  .hero-picture {
+    min-height: 380px;
+    margin: 0 10px 0 20px;
+  }
+  .dog-sticker {
+    width: 100px;
+    height: 100px;
+  }
+}

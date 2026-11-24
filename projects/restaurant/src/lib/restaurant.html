@@ -1,0 +1,201 @@
+<div class="business restaurant">
+  <div class="demo-ribbon inner">
+    <span>RESTAURANT DEMO &middot; FICTIONAL BUSINESS</span>
+  </div>
+  <header class="business-nav inner">
+    <a
+      class="business-logo"
+      [routerLink]="[]"
+      fragment="restaurant-top"
+      aria-label="The neighborhood table home"
+      >table<span>.</span></a
+    >
+    <nav aria-label="Restaurant navigation">
+      <a [routerLink]="[]" fragment="restaurant-menu">Our menu</a
+      ><a [routerLink]="[]" fragment="restaurant-story">Our story</a
+      ><button class="biz-button" type="button" (click)="openBooking(booking)">
+        Book a table <span aria-hidden="true">&#8599;</span>
+      </button>
+    </nav>
+  </header>
+  <section id="restaurant-top" class="biz-hero" aria-labelledby="restaurant-title">
+    <div class="hero-picture">
+      <picture>
+        <source srcset="images/restaurant-room.avif" type="image/avif" />
+        <img
+          ngSrc="images/restaurant-room.webp"
+          fill
+          priority
+          sizes="100vw"
+          alt="A freshly plated dish being served in a warmly lit restaurant"
+        />
+      </picture>
+    </div>
+    <div class="hero-copy inner">
+      <p class="kicker">GOOD FOOD. GREAT COMPANY.</p>
+      <h1 id="restaurant-title">A seat at<br /><em>your table.</em></h1>
+      <p>Seasonal plates. Familiar faces. The kind of evening you'll want to make a habit of.</p>
+      <div class="hero-actions">
+        <button class="biz-button" type="button" (click)="openBooking(booking)">
+          Make yourself at home <span aria-hidden="true">&#8599;</span></button
+        ><a class="quiet-link" [routerLink]="[]" fragment="restaurant-menu"
+          >Take a look at the menu &darr;</a
+        >
+      </div>
+      <span class="hero-footnote">LOCAL INGREDIENTS &middot; A LITTLE EXTRA LOVE</span>
+    </div>
+  </section>
+  <div class="biz-values">
+    <span>Seasonal by nature</span><span>Made for sharing</span><span>Always a warm welcome</span>
+  </div>
+  <section id="restaurant-menu" class="biz-section inner" aria-labelledby="menu-title">
+    <div class="section-top">
+      <div>
+        <p class="kicker">FRESH FROM OUR KITCHEN</p>
+        <h2 id="menu-title">Good things are on the menu.</h2>
+      </div>
+      <p>A small, thoughtful selection.<br />A reason to come back for seconds.</p>
+    </div>
+    <div class="biz-filters" aria-label="Menu categories">
+      @for (item of categories; track item) {
+        <button
+          type="button"
+          [class.active]="category() === item"
+          [attr.aria-pressed]="category() === item"
+          (click)="category.set(item)"
+        >
+          {{ item }}
+        </button>
+      }
+    </div>
+    <p class="result-count" aria-live="polite">
+      {{ visibleMenu().length }} {{ visibleMenu().length === 1 ? 'dish' : 'dishes' }} to discover
+    </p>
+    <div class="business-cards">
+      @for (dish of visibleMenu(); track dish.name) {
+        <article class="business-card">
+          <div class="card-photo">
+            <picture>
+              <source
+                media="(max-width: 700px)"
+                [srcset]="
+                  'images/' + dish.image + '-480.webp 480w, images/' + dish.image + '-768.webp 768w'
+                "
+                sizes="90vw"
+                type="image/webp"
+              />
+              <img
+                [ngSrc]="'images/' + dish.image + '.webp'"
+                fill
+                sizes="(max-width: 700px) 90vw, 30vw"
+                [alt]="dish.name + ' - illustrative food photography'"
+              />
+            </picture>
+            <span class="photo-badge">{{ dish.note }}</span>
+          </div>
+          <div class="card-body">
+            <div class="card-title">
+              <h3>{{ dish.name }}</h3>
+              <span>{{ dish.price | currency: 'USD' : 'symbol' : '1.0-0' }}</span>
+            </div>
+            <p>{{ dish.description }}</p>
+          </div>
+        </article>
+      }
+    </div>
+    <p class="small-print">
+      Sample menu and USD pricing. Please speak to a real venue about allergies; this demo cannot
+      provide allergen advice.
+    </p>
+  </section>
+  <section id="restaurant-story" class="biz-story inner" aria-labelledby="restaurant-story-title">
+    <div>
+      <p class="kicker">A NEIGHBORHOOD KIND OF PLACE</p>
+      <h2 id="restaurant-story-title">Pull up a chair.<br />Stay a little longer.</h2>
+    </div>
+    <div>
+      <p>
+        We believe the best meals aren't just about what's on the plate. They're about the stories
+        told, the glasses raised, and the people across the table.
+      </p>
+      <p>
+        Our fictional neighborhood kitchen celebrates simple ingredients, thoughtful cooking, and
+        making everyone feel like a regular.
+      </p>
+      <button class="biz-button" type="button" (click)="openBooking(booking)">
+        Find your seat <span aria-hidden="true">&#8599;</span>
+      </button>
+    </div>
+  </section>
+  <footer class="business-footer inner">
+    <strong>table. &mdash; The neighborhood table</strong
+    ><span>Sample hours: Tuesday &ndash; Sunday, 5 &ndash; 10 PM</span
+    ><span>Demo only. No real reservations or payments.</span>
+  </footer>
+  <dialog
+    #booking
+    class="biz-dialog"
+    aria-labelledby="booking-title"
+    (keydown.escape)="booking.close(); $event.preventDefault()"
+  >
+    <div class="dialog-top">
+      <span class="kicker">MAKE AN EVENING OF IT</span
+      ><button
+        class="icon-button"
+        type="button"
+        #closeBooking
+        aria-label="Close booking"
+        (click)="booking.close()"
+      >
+        &times;
+      </button>
+    </div>
+    <h2 id="booking-title">Your table is waiting.</h2>
+    <p>Try a sample booking for our fictional demo evening. Nothing is sent to a restaurant.</p>
+    @if (!bookingConfirmed()) {
+      <fieldset>
+        <legend>Your party</legend>
+        <div class="biz-filters">
+          @for (size of [2, 4, 6]; track size) {
+            <button
+              type="button"
+              [class.active]="partySize() === size"
+              [attr.aria-pressed]="partySize() === size"
+              (click)="partySize.set(size)"
+            >
+              {{ size }} guests
+            </button>
+          }
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Sample seating time</legend>
+        <div class="biz-filters">
+          @for (slot of times; track slot) {
+            <button
+              type="button"
+              [class.active]="time() === slot"
+              [attr.aria-pressed]="time() === slot"
+              (click)="time.set(slot)"
+            >
+              {{ slot }}
+            </button>
+          }
+        </div>
+      </fieldset>
+      <button
+        class="biz-button"
+        type="button"
+        (click)="bookingConfirmed.set(true); closeBooking.focus()"
+      >
+        Try this reservation <span aria-hidden="true">&#8599;</span>
+      </button>
+    }
+    <p class="demo-status" role="status">
+      @if (bookingConfirmed()) {
+        Demo reservation for {{ partySize() }} guests at {{ time() }}. No real table has been
+        booked.
+      }
+    </p>
+  </dialog>
+</div>
