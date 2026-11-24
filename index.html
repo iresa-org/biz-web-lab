@@ -2,7 +2,8 @@
 <html lang="en" data-beasties-container>
   <head>
     <meta charset="utf-8">
-    <title>WebShowcase</title>
+    <title>Biz Web Lab | Small business. Big possibilities.</title>
+    <meta name="description" content="Explore thoughtful web design for small businesses. Discover restaurant, pet retail, and dealership concepts from Biz Web Lab.">
     <base href="https://iresa-org.github.io/biz-web-lab/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
@@ -21,10 +22,22 @@
             location.pathname.slice(0, -1) + decoded + location.hash,
           );
         }
+
+        if (
+          location.pathname.replace(/\/$/, '') === new URL('restaurant', document.baseURI).pathname
+        ) {
+          const hero = document.createElement('link');
+          hero.rel = 'preload';
+          hero.as = 'image';
+          hero.href = 'images/restaurant-room.avif';
+          hero.type = 'image/avif';
+          hero.fetchPriority = 'high';
+          document.head.appendChild(hero);
+        }
       })(window.location);
     </script>
-  <link rel="stylesheet" href="styles-5INURTSO.css"></head>
+  <style>:root{--ink:#1e3028;--muted:#647068;--line:#dce1d9;--mint:#dce9d8;font-family:Segoe UI,Arial,sans-serif;color:var(--ink);background:#f8f9f5;font-synthesis:none;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}body{margin:0}@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}</style><link rel="stylesheet" href="styles-Z7XMJKBW.css" media="print" data-beasties-media="all"><noscript><link rel="stylesheet" href="styles-Z7XMJKBW.css"></noscript></head>
   <body>
     <app-root></app-root>
-  <script src="main-GNKQDCXP.js" type="module"></script></body>
+  <script src="main-TGIDZVBB.js" type="module"></script><script>document.querySelectorAll('link[data-beasties-media]').forEach(function(l){l.media=l.getAttribute('data-beasties-media');l.removeAttribute('data-beasties-media')})</script></body>
 </html>
