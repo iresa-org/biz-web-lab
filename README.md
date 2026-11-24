@@ -1,5 +1,9 @@
 # BizWebLab
 
+[![Deploy to GitHub Pages](https://github.com/iresa-org/biz-web-lab/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/iresa-org/biz-web-lab/actions/workflows/deploy-pages.yml)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)](https://github.com/iresa-org/biz-web-lab/actions/workflows/deploy-pages.yml)
+[![Angular](https://img.shields.io/badge/Angular-22-dd0031?logo=angular&logoColor=white)](https://angular.dev/)
+
 Live site: https://iresa-org.github.io/biz-web-lab/
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.0.0.
