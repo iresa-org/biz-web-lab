@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Test
+        run: npm run test:ci
+
       - name: Build
         run: npm run build -- --base-href 'https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/'
 

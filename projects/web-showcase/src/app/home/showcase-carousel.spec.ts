@@ -54,5 +54,25 @@ describe('Showcase carousel', () => {
     expect(element.querySelector('.project-tabs button')?.getAttribute('aria-pressed')).toBe(
       'true',
     );
+    for (const button of element.querySelectorAll<HTMLButtonElement>('.project-tabs button')) {
+      button.click();
+      await fixture.whenStable();
+    }
+    for (const button of element.querySelectorAll<HTMLButtonElement>('.dots button')) {
+      button.click();
+      await fixture.whenStable();
+    }
+
+    const showcase = element.querySelector('#showcase')!;
+    showcase.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'ArrowLeft', bubbles: true, cancelable: true }),
+    );
+    await fixture.whenStable();
+    expect(element.querySelector('.project-info a')?.getAttribute('href')).toBe('/dog-shop');
+    showcase.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Enter', bubbles: true, cancelable: true }),
+    );
+    await fixture.whenStable();
+    expect(element.querySelector('.project-info a')?.getAttribute('href')).toBe('/dog-shop');
   });
 });

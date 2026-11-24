@@ -50,4 +50,50 @@ describe('DogShop', () => {
     expect(element.querySelector('.bag-total strong')?.textContent).toBe('$0.00');
     expect(element.querySelectorAll('.bag-row')).toHaveLength(0);
   });
+
+  it('supports all product categories and bag dialog controls', async () => {
+    const element: HTMLElement = fixture.nativeElement;
+    const dialog = element.querySelector('dialog')!;
+    dialog.showModal = vi.fn();
+    dialog.close = vi.fn();
+
+    const categoryButtons = element.querySelectorAll<HTMLButtonElement>(
+      '#dog-products .biz-filters button',
+    );
+    for (const button of categoryButtons) {
+      button.click();
+      await fixture.whenStable();
+      expect(button.getAttribute('aria-pressed')).toBe('true');
+    }
+
+    categoryButtons[0].click();
+    await fixture.whenStable();
+    const addButtons = element.querySelectorAll<HTMLButtonElement>('.business-card button');
+    for (const button of addButtons) {
+      button.click();
+    }
+    await fixture.whenStable();
+    expect(element.querySelector('.business-nav button')?.textContent).toContain('Bag (3)');
+    addButtons[0].click();
+    await fixture.whenStable();
+    expect(element.querySelector('.business-nav button')?.textContent).toContain('Bag (4)');
+
+    element.querySelector<HTMLButtonElement>('.business-nav button')?.click();
+    expect(dialog.showModal).toHaveBeenCalledOnce();
+    dialog.querySelector<HTMLButtonElement>('[aria-label="Close bag"]')?.click();
+    dialog.querySelector<HTMLButtonElement>(':scope > .quiet-button')?.click();
+    dialog.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }),
+    );
+    expect(dialog.close).toHaveBeenCalledTimes(3);
+
+    const removeButtons = dialog.querySelectorAll<HTMLButtonElement>('.quiet-button');
+    for (const button of Array.from(removeButtons)) {
+      if (button.getAttribute('aria-label')?.startsWith('Remove ')) {
+        button.click();
+        await fixture.whenStable();
+      }
+    }
+    expect(element.querySelector('.demo-status')?.textContent).toContain('removed');
+  });
 });

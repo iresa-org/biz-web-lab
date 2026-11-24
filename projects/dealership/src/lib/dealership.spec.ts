@@ -48,4 +48,38 @@ describe('Dealership', () => {
     expect(dialog.querySelector('[role="status"]')?.textContent?.trim()).toBe('');
     expect(dialog.querySelector<HTMLButtonElement>(':scope > .biz-button')?.disabled).toBe(false);
   });
+
+  it('supports every vehicle filter and dialog control', async () => {
+    const element: HTMLElement = fixture.nativeElement;
+    const dialog = element.querySelector('dialog')!;
+    dialog.showModal = vi.fn();
+    dialog.close = vi.fn();
+
+    const typeButtons = element.querySelectorAll<HTMLButtonElement>('.biz-filters button');
+    for (const button of typeButtons) {
+      button.click();
+      await fixture.whenStable();
+      expect(button.getAttribute('aria-pressed')).toBe('true');
+    }
+    const budget = element.querySelector<HTMLButtonElement>('.budget-filter')!;
+    budget.click();
+    budget.click();
+    await fixture.whenStable();
+    expect(budget.getAttribute('aria-pressed')).toBe('false');
+
+    typeButtons[0].click();
+    await fixture.whenStable();
+    const vehicleButtons = element.querySelectorAll<HTMLButtonElement>('.business-card button');
+    for (const button of vehicleButtons) {
+      button.click();
+      await fixture.whenStable();
+    }
+    expect(dialog.showModal).toHaveBeenCalledTimes(vehicleButtons.length);
+
+    dialog.querySelector<HTMLButtonElement>('[aria-label="Close vehicle details"]')?.click();
+    dialog.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Escape', bubbles: true, cancelable: true }),
+    );
+    expect(dialog.close).toHaveBeenCalledTimes(2);
+  });
 });

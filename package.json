@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build web-showcase",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "test:ci": "ng test web-showcase --watch=false --coverage --runner-config=vitest-base.config.mts --coverage-exclude=\"projects/restaurant/**\" --coverage-exclude=\"projects/dog-shop/**\" --coverage-exclude=\"projects/dealership/**\" && ng test restaurant --watch=false --coverage --runner-config=vitest-base.config.mts && ng test dog-shop --watch=false --coverage --runner-config=vitest-base.config.mts && ng test dealership --watch=false --coverage --runner-config=vitest-base.config.mts"
   },
   "private": true,
   "packageManager": "npm@11.13.0",
@@ -24,6 +25,7 @@
     "@angular/build": "^22.3.0",
     "@angular/cli": "^22.0.0",
     "@angular/compiler-cli": "^22.0.0",
+    "@vitest/coverage-v8": "^5.1.1",
     "angular-cli-ghpages": "^3.1.2",
     "jsdom": "^31.0.0",
     "prettier": "^3.8.1",
