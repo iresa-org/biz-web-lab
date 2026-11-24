@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en" data-beasties-container>
+  <head>
+    <meta charset="utf-8">
+    <title>WebShowcase</title>
+    <base href="https://iresa-org.github.io/biz-web-lab/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script>
+      (function (location) {
+        if (location.search[1] === '/') {
+          const decoded = location.search
+            .slice(1)
+            .split('&')
+            .map((part) => part.replace(/~and~/g, '&'))
+            .join('?');
+
+          window.history.replaceState(
+            null,
+            null,
+            location.pathname.slice(0, -1) + decoded + location.hash,
+          );
+        }
+      })(window.location);
+    </script>
+  <link rel="stylesheet" href="styles-5INURTSO.css"></head>
+  <body>
+    <app-root></app-root>
+  <script src="main-GNKQDCXP.js" type="module"></script></body>
+</html>
